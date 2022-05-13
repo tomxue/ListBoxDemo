@@ -89,7 +89,31 @@
                                 <Setter Property="BorderBrush" Value="Transparent" />
                             </Style>
                         </Border.Style>
-                        <Button Name="ItemButton" Content="{Binding Content}" BorderThickness="0" Padding="0" Background="#40475F"></Button>
+                        <StackPanel>
+                            <Button Name="ItemButton" BorderThickness="0" Padding="0" Background="#40475F"
+                                    CommandParameter="{Binding Number}" MouseEnter="ItemButton_MouseEnter" MouseLeave="ItemButton_MouseLeave"
+                                    MouseDoubleClick="ItemButton_MouseDoubleClick">
+                                <Button.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Open" Click="OpenFileClick"/>
+                                        <MenuItem Header="Open Path" Click="OpenPathClick"/>
+                                    </ContextMenu>
+                                </Button.ContextMenu>
+                            </Button>
+
+                            <Popup PopupAnimation="Fade" Height="120" Placement="Mouse" AllowsTransparency="True" StaysOpen="True"
+                                            IsOpen="{Binding Popup_IsOpen}">
+                                <Grid>
+                                    <Rectangle Fill="White" Margin="5" Opacity="0.8" RadiusY="2" RadiusX="2">
+                                        <Rectangle.Effect>
+                                            <DropShadowEffect Color="#FFBBBBBB" Direction="0" BlurRadius="15" RenderingBias="Quality" ShadowDepth="1"></DropShadowEffect>
+                                        </Rectangle.Effect>
+                                    </Rectangle>
+                                    <StackPanel Margin="15">
+                                    </StackPanel>
+                                </Grid>
+                            </Popup>
+                        </StackPanel>
                     </Border>
 
                     <DataTemplate.Triggers>

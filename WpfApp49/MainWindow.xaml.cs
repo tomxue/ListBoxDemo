@@ -29,5 +29,30 @@ namespace WpfApp49
         {
 
         }
+
+        private void ItemButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void ItemButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void ItemButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void OpenFileClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OpenPathClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
