@@ -1,0 +1,114 @@
+﻿<Window x:Class="WpfApp49.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp49"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="800">
+    <StackPanel>
+        <ListBox>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock></TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+            <ListBoxItem Content="text1"></ListBoxItem>
+            <ListBoxItem Content="text2"></ListBoxItem>
+            <ListBoxItem Content="text3"></ListBoxItem>
+            <ListBoxItem Content="text4"></ListBoxItem>
+        </ListBox>
+
+        <ListBox x:Name="TestList" SelectionMode="Single" Margin="0,30">
+
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <StackPanel>
+                                    <!--<CheckBox Content="Check this checkbox!" />-->
+                                    <TextBlock Text="{TemplateBinding Content}" />
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
+                </Style>
+            </ListBox.ItemContainerStyle>
+
+            <ListBox.Items>
+                <ListBoxItem>Bob</ListBoxItem>
+                <ListBoxItem>Jim</ListBoxItem>
+                <ListBoxItem>Dave</ListBoxItem>
+                <ListBoxItem>Larry</ListBoxItem>
+                <ListBoxItem>Tom</ListBoxItem>
+            </ListBox.Items>
+        </ListBox>
+
+        <ListBox Name="MyListBox" 
+                     Grid.Row="0"
+                     Background="Gray"
+                     BorderThickness="0"
+                     HorizontalAlignment="Center" 
+                     Margin="0,9,0,0" 
+                     Width="336"
+                     Height="152"
+                     VerticalAlignment="Top"   
+                     SelectionMode="Single"
+                     ScrollViewer.CanContentScroll="True"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     ScrollViewer.ScrollChanged="ListBoxScrollChanged">
+            <ListBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="4"/>
+                </Style>
+                <Style TargetType="{x:Type Thumb}">
+                    <Setter Property="Width" Value="6"/>
+                </Style>
+                <Style TargetType="{x:Type ScrollBar}">
+                </Style>
+                <Style TargetType="{x:Type ListBox}">
+                    <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True"></Setter>
+                    <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling"></Setter>
+                </Style>
+            </ListBox.Resources>
+            <ListBox.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Control.BorderThickness" Value="0"/>
+                    <Setter Property="Control.Padding" Value="0"/>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border x:Name="HighlightBorder" BorderThickness="2">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="BorderBrush" Value="Transparent" />
+                            </Style>
+                        </Border.Style>
+                        <Button Name="ItemButton" Content="{Binding Content}" BorderThickness="0" Padding="0" Background="#40475F"></Button>
+                    </Border>
+
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}" Value="True">
+                            <Setter TargetName="HighlightBorder" Property="BorderBrush" Value="Orange" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+
+            <ListBox.Items>
+                <ListBoxItem>Bob</ListBoxItem>
+                <ListBoxItem>Jim</ListBoxItem>
+                <ListBoxItem>Dave</ListBoxItem>
+                <ListBoxItem>Larry</ListBoxItem>
+                <ListBoxItem>Tom</ListBoxItem>
+                <ListBoxItem>Peter</ListBoxItem>
+            </ListBox.Items>
+        </ListBox>
+    </StackPanel>
+</Window>
